@@ -1,0 +1,39 @@
+package com.hairain.controller;
+
+import com.hairain.pojo.Result;
+import com.hairain.utils.AliyunOSSOperator;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.UUID;
+
+/**
+ * ClassName:UploadController
+ * Package: com.hairain.controller
+ * Description:
+ *
+ * @Author Hairain
+ * @Create 2026/10/7 17:07
+ * @Version 1.0
+ */
+@Slf4j
+@RestController
+public class UploadController {
+
+    @Autowired
+    private AliyunOSSOperator aliyunOSSOperator;
+
+    @PostMapping("/upload")
+    public Result upload(MultipartFile file) throws Exception {
+        log.info("接受参数{}",file.getOriginalFilename());
+        String url = aliyunOSSOperator.upload(file.getBytes(),file.getOriginalFilename());
+        log.info("文件上传OSS，url：{}",url);
+        return Result.success(url);
+    }
+}

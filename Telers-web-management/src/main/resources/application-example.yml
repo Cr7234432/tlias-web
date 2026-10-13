@@ -1,0 +1,41 @@
+# 配置模板：复制为 application.yml 后填入自己的真实信息
+# cp application-example.yml application.yml
+# 注意：application.yml 已被 .gitignore 排除，不要提交真实密码
+
+spring:
+  application:
+    name: tlias-web-management
+
+  # 数据库连接信息
+  datasource:
+    url: jdbc:mysql://localhost:3306/tlias
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: your_username
+    password: your_password
+
+  servlet:
+    multipart:
+      # 最大单个文件大小
+      max-file-size: 10MB
+      # 最大请求（包含所有文件和表单数据）
+      max-request-size: 100MB
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# 事务管理日志级别
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+# 阿里云 OSS
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: your-bucket-name
+    region: cn-beijing
+    # 若代码中使用 AccessKey 直连，请自行补充以下两项（不要提交到仓库）
+    # accessKeyId: your-access-key-id
+    # accessKeySecret: your-access-key-secret

@@ -1,0 +1,33 @@
+# ==================== 编译产物 ====================
+# 不带前导斜杠，自动匹配三个子项目里各自的 target/
+target/
+build/
+out/
+*.class
+
+# ==================== IDE ====================
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# ==================== 操作系统 ====================
+.DS_Store
+Thumbs.db
+
+# ==================== 日志 ====================
+# 含 Telers-web-management/tlias/ 下生成的运行日志
+*.log
+logs/
+
+# ==================== 敏感配置（重要）====================
+# application.yml 内含明文数据库密码，绝对不能提交
+application.yml
+application-*.yml
+application*.properties
+# 例外：示例配置模板允许提交（把密码改成占位符后再用）
+!application-example.yml
